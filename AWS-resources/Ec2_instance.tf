@@ -14,6 +14,7 @@ provider "aws" {
 
 
 resource "aws_instance" "Dev_server" {
+  ami = "sksksk"
   instance_type = "t2.micro"
   tags = {
     Name = "Dev_server"
