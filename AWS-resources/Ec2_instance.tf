@@ -14,7 +14,10 @@ provider "aws" {
 
 
 resource "aws_instance" "Dev_server" {
+  ami = "Mistakossiami"
   instance_type = "t2.micro"
+  subnet_id = aws_subnet.public1.id
+  security_groups = [aws_security_group.allow_tls.name]
   tags = {
     Name = "Dev_server"
     Team = "DevOps"
