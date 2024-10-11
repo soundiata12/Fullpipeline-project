@@ -16,6 +16,7 @@ provider "aws" {
 resource "aws_instance" "Dev_server" {
   ami = "sksksk"
   instance_type = "t2.micro"
+  subnet_id = aws_subnet.public1.id
   tags = {
     Name = "Dev_server"
     Team = "DevOps"
