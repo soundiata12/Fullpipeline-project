@@ -1,6 +1,6 @@
 resource "aws_security_group" "security_group_id" {
   name = "security_group_id"
-  vpc_id      =  "Dev_02"
+  vpc_id      =  "aws_vpc.Dev_02"
   tags = {
     Name = "security_group_id"
   }
