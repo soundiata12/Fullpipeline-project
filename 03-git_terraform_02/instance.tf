@@ -1,6 +1,6 @@
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+resource "aws_instance" "ubuntu" {
+  ami           = ami-0866a3c8686eaeeba
+  instance_type = "t2.micro"
 
   tags = {
     Name = "ubuntu-public-ec2-instance"
