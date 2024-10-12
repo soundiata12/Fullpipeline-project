@@ -4,7 +4,7 @@ resource "aws_instance" "centos_instance" {
   instance_type = "t2.micro"
 
   key_name               = aws_key_pair.devop
-  security_groups        = [aws_security_group.instance_sg.   ]
+  security_groups        = aws_security_group.instance_sg
 
   tags = {
     Name = "mycentOs_instance"
