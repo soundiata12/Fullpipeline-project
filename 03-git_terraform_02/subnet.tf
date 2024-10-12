@@ -29,3 +29,8 @@ resource "aws_route_table" "route_public" {
     gateway_id = aws_internet_gateway.gwy1.id
  }
 }
+
+resource "aws_nat_gateway" "nategateway" {
+  allocation_id = aws_eip.eip.id
+  subnet_id = aws_subnet.public.id
+}
