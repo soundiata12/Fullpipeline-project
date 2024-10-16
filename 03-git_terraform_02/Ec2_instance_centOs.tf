@@ -1,6 +1,6 @@
 
 resource "aws_instance" "centos_instance" {
-  ami           = "ami-0f2b4fc905b0bd1d1"  
+  ami  = "ami-0f2b4fc905b0bd1d1" 
   instance_type = "t2.micro"
 
   key_name               = aws_key_pair.devop
