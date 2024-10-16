@@ -1,12 +1,26 @@
 pipeline {
     agent any
 
-    // Parameters block should be outside of stages
-    parameters {
-        string(name: 'REGION', defaultValue: 'us-east-1', description: 'Enter the region where you want to deploy')
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Enter the branch name to deploy from')
-        choice(name: 'ENV_CHOICE', choices: ['dev', 'staging', 'prod'], description: 'Choose the environment for deployment')
-    }
+
+parameters {
+   string(
+    name: 'REGION', 
+    defaultValue: 'us-east-1', 
+    description: 'Enter the region where you want to deploy'
+)
+
+string(
+    name: 'BRANCH_NAME', 
+    defaultValue: 'main', 
+    description: 'Enter the branch name to deploy from'
+)
+
+choice(
+    name: 'ENV_CHOICE', 
+    choices: ['dev', 'staging', 'prod'], 
+    description: 'Choose the environment for deployment'
+)
+
 
     environment {
         DEPLOY_REGION = "${params.REGION}"
@@ -15,25 +29,23 @@ pipeline {
     }
 
     stages {
-        stage('Set Region') {
+        stage('us-east-1') {
             steps {
                 echo "Using region: ${DEPLOY_REGION}"
-                sh "aws configure set region ${DEPLOY_REGION}" // If configuring AWS CLI
+                sh "aws configure set region ${DEPLOY_REGION}"
             }
         }
         
-        stage('Checkout Branch') {
+        stage('Checkout main') {
             steps {
                 echo "Checking out branch: ${GIT_BRANCH}"
-                // Example of Git branch checkout, modify with your repo URL
-                checkout([$class: 'GitSCM', branches: [[name: "${GIT_BRANCH}"]], userRemoteConfigs: [[url: 'git@your-repo-url.git']]])
             }
         }
         
-        stage('Set Environment') {
+        stage('Ade') {
             steps {
                 echo "Using environment: ${ENVIRONMENT}"
-                // You can add additional environment-specific commands here
+                echo "Kossi, Adelina tried :)
             }
         }
 
