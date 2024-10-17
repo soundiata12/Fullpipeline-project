@@ -3,12 +3,8 @@ pipeline{
     stages{
         stage("checkout     "){
             steps{
-
-                echo "========executing A========"
+                
                 sh "pwd"
-                sh "netstat -nltp"
-                sh "ping google.com -c4"
-                sh "uname -r"
             
             }
             
