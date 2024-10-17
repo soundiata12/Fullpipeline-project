@@ -14,12 +14,20 @@ provider "aws" {
 
 
 resource "aws_instance" "Dev_server" {
-  ami = "sksksk"
+  ami = "ami-0866a3c8686eaeeba"
   instance_type = "t2.micro"
-  subnet_id = aws_subnet.public1.id
+  key_name = "ade12"
   tags = {
     Name = "Dev_server"
     Team = "DevOps"
   }
   }
   
+  resource "aws_vpc" "main" {
+  cidr_block       = "10.0.0.0/16"
+  instance_tenancy = "default"
+
+  tags = {
+    Name = "main"
+  }
+}
