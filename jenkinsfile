@@ -3,8 +3,8 @@ pipeline{
     stages{
         stage('checkout scm'){
             steps{
-        
                 checkout([
+                    branch: [['*/main']]
                     url: 'https://github.com/soundiata12/Fullpipeline-project.git'
                 ])
             }
