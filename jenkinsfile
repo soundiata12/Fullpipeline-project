@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    stages{
+        stage('checkout scm'){
+            steps{
+              script{
+                checkout([
+                    url: 'https://github.com/soundiata12/Fullpipeline-project.git'
+                ])
+              }
+            }
+            
+            }
+        }
+    }
