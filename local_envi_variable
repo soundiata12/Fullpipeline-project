@@ -1,0 +1,16 @@
+
+stage("Set Local Variables") {
+    steps {
+           script {
+              def ENVIRON = "development"
+              def REGION = "us-west-2"
+              def INSTANCE_type = "t2.micro"
+
+              echo "Environment: ${ENVIRON}"
+              echo "Region: ${REGION}"
+              echo "Instance Type: ${INSTANCE_TYPE}"
+              }
+          }
+}
+    
+

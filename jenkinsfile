@@ -1,0 +1,51 @@
+pipeline {
+    agent any
+    environment {
+        GIT_REPO = "${https://github.com/soundiata12/Fullpipeline-project.git}"
+
+        TERRAFORM_VERSION = '1.9.8'
+        
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git url: "${https://github.com/soundiata12/Fullpipeline-project.git}", branch: 'main'
+            }
+        }
+
+ 
+        stage('Install Terraform') {
+            steps {
+                sh ''
+                    wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    sudo mv terraform /usr/local/bin/
+                    terraform version
+                
+            }
+        } 
+        
+        stage('Deploy to Production') {
+            when {
+              branch 'main'
+            }
+            steps {
+
+              echo 'Deploying to production'
+            } 
+        }
+        stage("Set Local Variables") {
+           steps {
+                script {
+                     def ENVIRON = "development"
+                     def REGION = "us-east-1"
+                     def INSTANCE_type = "t2.micro"
+
+                     echo "Environment: ${ENVIRON}"
+                     echo "Region: ${REGION}"
+                     echo "Instance Type: ${INSTANCE_TYPE}"
+                }
+            }
+        }
+    }
+}
