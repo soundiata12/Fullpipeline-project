@@ -23,6 +23,16 @@ pipeline {
                     terraform version
                 
             }
-        }
+        } 
+        
+        stage('Deploy to Production') {
+            when {
+              branch 'main'
+    }
+            steps {
+
+              echo 'Deploying to production'
+    }
+}
     }
 }
