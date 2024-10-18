@@ -1,32 +1,20 @@
 pipeline {
     agent any
-
+    
+    environment {
+        TERRAFORM_VERSION = '1.5.7'  
+    }
+    
     stages {
         stage('Install Terraform') {
             steps {
-                script {
-                    // Define the version of Terraform you want to install
-                    def terraformVersion = "5.72.1"
-                    def terraformUrl = "https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip"
-
-                    // Download Terraform
-                    sh "curl -o terraform.zip ${terraformUrl}"
-
-                    // Unzip the downloaded file
-                    sh "unzip terraform.zip"
-
-                    // Move the Terraform binary to /usr/local/bin
-                    sh "sudo mv terraform /usr/local/bin/"
-
-                    // Clean up the zip file
-                    sh "rm terraform.zip"
-
-                    // Verify installation
-                    sh "terraform -version"
-                }
+                sh ''
+                    wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    sudo mv terraform /usr/local/bin/
+                    terraform version
+                
             }
         }
     }
 }
-
-    

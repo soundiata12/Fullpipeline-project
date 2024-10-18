@@ -2,11 +2,25 @@ pipeline {
     agent any
     environment {
         GIT_REPO = "${https://github.com/soundiata12/Fullpipeline-project.git}"
+        TERRAFORM_VERSION = '1.9.8'
+        
     }
     stages {
         stage('Checkout') {
             steps {
                 git url: "${https://github.com/soundiata12/Fullpipeline-project.git}", branch: 'main'
+            }
+        }
+
+ 
+        stage('Install Terraform') {
+            steps {
+                sh ''
+                    wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+                    sudo mv terraform /usr/local/bin/
+                    terraform version
+                
             }
         }
     }
