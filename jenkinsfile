@@ -5,7 +5,7 @@ pipeline{
             steps{
                 checkout([
                     branch: [['*/main']]
-                    url: 'https://github.com/soundiata12/Fullpipeline-project.git'
+                    url: 'https://github.com/soundiata12/Fullpipeline-project.git'branch
                 ])
             }
             
