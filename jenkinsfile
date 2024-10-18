@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         GIT_REPO = "${https://github.com/soundiata12/Fullpipeline-project.git}"
+
         TERRAFORM_VERSION = '1.9.8'
         
     }
@@ -22,6 +23,16 @@ pipeline {
                     terraform version
                 
             }
-        }
+        } 
+        
+        stage('Deploy to Production') {
+            when {
+              branch 'main'
+    }
+            steps {
+
+              echo 'Deploying to production'
+    }
+}
     }
 }
